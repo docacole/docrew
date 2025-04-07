@@ -6,6 +6,15 @@ export interface ApplicationAsset {
   path: string;
 }
 
+// 应用事件
+export const Events = Object.freeze({
+  CHECK_COMPLETED: "check_completed",
+  CHECK_EMPTY_HOLE: "check_empty_hole",
+  REMOVE_ELEMENT: "remove_element",
+
+  CHECK_GUIDE: "check_guide",
+});
+
 // 所有资源
 export const Assets: Record<string, ApplicationAsset> = Object.freeze({
   Prefab: { type: Prefab, path: "preload/prefabs/" },

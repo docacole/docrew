@@ -1,7 +1,8 @@
 import { _decorator, Component, Node, Widget } from "cc";
+const { ccclass, property } = _decorator;
+
 import { AudioManager } from "../../managers/AudioManager";
 import { Audios } from "../../app/Constants";
-const { ccclass, property } = _decorator;
 
 @ccclass("BasePage")
 export class BasePage extends Component {

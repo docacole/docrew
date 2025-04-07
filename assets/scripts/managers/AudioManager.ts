@@ -22,7 +22,7 @@ export class AudioManager {
 
   // 播放声音
   public async playAudio(name: string, volumeScale = 0.7) {
-    if (!Application.audio_switch) {
+    if (!Application.audioSwitch) {
       return;
     }
 

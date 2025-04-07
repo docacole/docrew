@@ -1,10 +1,10 @@
 import { _decorator, Component, Node } from "cc";
-import { BasePage } from "../base/BasePage";
-
 const { ccclass, property } = _decorator;
 
-@ccclass("SettingsPage")
-export class SettingsPage extends BasePage {
+import { BasePage } from "../../common/BasePage";
+
+@ccclass("MenuPage")
+export class MenuPage extends BasePage {
   start() {
     super.start();
   }

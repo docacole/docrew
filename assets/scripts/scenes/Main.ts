@@ -1,85 +1,55 @@
-import { _decorator, Component, director, Node, Sprite } from "cc";
-import { Application } from "../app/Application";
-import ResourceManager from "../managers/ResourceManager";
-import { Assets } from "../app/Constants";
+import { _decorator, Component, Node } from "cc";
 const { ccclass, property } = _decorator;
+
+import { Audios } from "../app/Constants";
+import { Application } from "../app/Application";
+
+import { AudioManager } from "../managers";
+import { MenuPage } from "../components/game/pages";
+import { RootLayer, EmptyLayer, SlotLayer } from "../components/game/layers";
 
 @ccclass("Main")
 export class Main extends Component {
-  @property({ type: Node })
-  logo: Node = null;
-  @property({ type: Node })
-  loading: Node = null;
-  @property({ type: Sprite })
-  loadingFill: Sprite = null;
-  @property({ type: Node })
-  btnsLayer: Node = null;
+  @property({ type: RootLayer })
+  rootLayer: RootLayer;
 
-  private isLoading = true;
-  private isGamePreloaded = false;
-  private isApplicationLoaded = false;
+  @property({ type: EmptyLayer })
+  emptyLayer: EmptyLayer;
 
-  async start() {
-    this.btnsLayer.active = false;
+  @property({ type: SlotLayer })
+  slotLayer: SlotLayer;
 
-    await this.loadResources();
+  @property({ type: MenuPage })
+  menuPage: MenuPage;
+
+  start() {
+    Application.mainScene = this;
+
+    this.restartGame();
   }
 
-  update(deltaTime: number) {
-    if (!this.isLoading) return;
+  update(deltaTime: number) {}
 
-    this.loadingFill.fillRange = Application.loading_rate;
+  /**
+   * 重启游戏
+   */
+  restartGame() {
+    Application.resetLevel();
 
-    if (Application.loading_rate >= 0.99) {
-      this.isApplicationLoaded = true;
-      this.isLoading = false;
-      this.checkShowBtns();
-    }
-  }
-
-  async loadResources() {
-    // 预加载游戏内容
-    director.preloadScene("Game", () => {
-      console.log(">>>Game scene preload completed!!");
-      this.isGamePreloaded = true;
-      this.checkShowBtns();
-    });
-
-    await ResourceManager.instance.loadBundle("bundle", 0.2);
-    await ResourceManager.instance.loadResource("bundle", Assets.Prefab, 0.6);
-    await ResourceManager.instance.loadResource("bundle", Assets.Audio, 0.2);
-  }
-
-  // 开始游戏
-  startGame() {
-    director.loadScene("Game");
-  }
-
-  // 检查等级数据
-  checkLevelData() {}
-
-  checkShowBtns() {
-    if (!this.isApplicationLoaded || !this.isGamePreloaded) return;
-
-    this.loading.active = false;
     this.startGame();
+  }
 
-    // this.btnsLayer.active = true;
+  startGame() {
+    console.log("start game level >>>", Application.currentLevel);
 
-    // let autoPlay = true;
+    // 重置钉子、金币数量
+    // Application.clearScene();
 
-    // this.btnsLayer.children.forEach((btn) => {
-    //   if (btn.active) {
-    //     autoPlay = false;
-    //   }
-    // });
+    this.rootLayer.initElement();
+  }
 
-    // if (autoPlay) {
-    //   this.startGame();
-    // } else {
-    //   this.btnsLayer.children.forEach((btn) => {
-    //     btn.active = true;
-    //   });
-    // }
+  openMenuPage() {
+    AudioManager.instance.playAudio(Audios.btn_1);
+    this.menuPage.open();
   }
 }

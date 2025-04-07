@@ -24,6 +24,15 @@ export class ResourcePool {
     return this._prefabPool[name];
   }
 
+  /**
+   * 获取关卡预制体
+   * @param level
+   * @returns
+   */
+  public getLevelPrefab(level: number): Prefab {
+    return this.getPrefab(`level_${level}`);
+  }
+
   public getPrefabForUnit(): Prefab[] {
     const arr: Prefab[] = [];
 

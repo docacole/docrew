@@ -29,7 +29,7 @@ export default class ResourceManager {
 
           this._bundles[name] = bundle;
           console.log(`Bundle ${name} loaded.`);
-          Application.loading_rate += ratio;
+          Application.loadingRate += ratio;
           resolve();
         }
       );
@@ -52,16 +52,16 @@ export default class ResourceManager {
           arr.push(progress);
 
           if (arr.length == 1) {
-            Application.loading_rate += progress;
+            Application.loadingRate += progress;
           } else {
-            Application.loading_rate +=
+            Application.loadingRate +=
               arr[arr.length - 1] - arr[arr.length - 2];
           }
           console.log(
             "progress >>",
             progress,
-            " Application.loading_rate>",
-            Application.loading_rate
+            " Application.loadingRate>",
+            Application.loadingRate
           );
         },
         (err: Error | null, assets: any[]) => {

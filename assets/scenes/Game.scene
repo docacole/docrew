@@ -700,7 +700,7 @@
     },
     "component": "",
     "_componentId": "69c53U7zGlFUZEhTW68yWps",
-    "handler": "openSettingsPage",
+    "handler": "openMenuPage",
     "customEventData": ""
   },
   {
@@ -1375,7 +1375,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -265,
+      "x": -250,
       "y": 300,
       "z": 0
     },
@@ -5012,7 +5012,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 260,
+      "x": 250,
       "y": 320,
       "z": 0
     },
