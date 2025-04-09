@@ -72,11 +72,11 @@ export default class ResourceManager {
 
           assets.forEach((it) => {
             switch (type) {
-              case Assets.PREFAB:
+              case Assets.prefab:
                 ResourcePool.instance.setPrefab(it.data.name, it);
                 console.log("prefab>> " + it.data.name + " ");
                 break;
-              case Assets.AUDIO:
+              case Assets.audio:
                 this._audios[it.name] = it;
                 console.log("audio>> " + it.name + " ");
                 break;

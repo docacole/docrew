@@ -16,9 +16,9 @@ export const Events = Object.freeze({
 });
 
 // 所有资源
-export const Assets: Record<string, ApplicationAsset> = Object.freeze({
-  Prefab: { type: Prefab, path: "preload/prefabs/" },
-  Audio: { type: AudioClip, path: "preload/audios/" },
+export const Assets = Object.freeze({
+  prefab: { type: Prefab, path: "preload/prefabs/" },
+  audio: { type: AudioClip, path: "preload/audios/" },
 });
 
 // 所有音频资源

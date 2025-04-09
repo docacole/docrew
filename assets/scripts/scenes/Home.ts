@@ -2,6 +2,7 @@ import { _decorator, Component, director, Node, Sprite } from "cc";
 import { Application } from "../app/Application";
 import ResourceManager from "../managers/ResourceManager";
 import { Assets } from "../app/Constants";
+
 const { ccclass, property } = _decorator;
 
 @ccclass("Home")
@@ -39,20 +40,20 @@ export class Home extends Component {
 
   async loadResources() {
     // 预加载游戏内容
-    director.preloadScene("Game", () => {
-      console.log(">>>Game scene preload completed!!");
+    director.preloadScene("Main", () => {
+      console.log(">>>Main scene preload completed!!");
       this.isGamePreloaded = true;
       this.checkShowBtns();
     });
 
     await ResourceManager.instance.loadBundle("bundle", 0.2);
-    await ResourceManager.instance.loadResource("bundle", Assets.Prefab, 0.6);
-    await ResourceManager.instance.loadResource("bundle", Assets.Audio, 0.2);
+    await ResourceManager.instance.loadResource("bundle", Assets.prefab, 0.6);
+    await ResourceManager.instance.loadResource("bundle", Assets.audio, 0.2);
   }
 
   // 开始游戏
   startGame() {
-    director.loadScene("Game");
+    director.loadScene("Main");
   }
 
   // 检查等级数据

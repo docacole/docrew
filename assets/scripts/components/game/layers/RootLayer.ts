@@ -17,6 +17,8 @@ export class RootLayer extends Component {
   public initElement() {
     const level = Application.currentLevel;
 
+    debugger;
+
     GameUtil.clearFromParent(this.node, LevelLayer);
 
     let levelPrefab = ResourcePool.instance.getLevelPrefab(level);

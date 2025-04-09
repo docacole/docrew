@@ -1,4 +1,6 @@
 import { _decorator, Component, Node, Prefab } from "cc";
+import { UnitElement } from "../components/game/elements/UnitElement";
+
 const { ccclass, property } = _decorator;
 
 @ccclass("ResourcePool")
@@ -36,12 +38,12 @@ export class ResourcePool {
   public getPrefabForUnit(): Prefab[] {
     const arr: Prefab[] = [];
 
-    // for (let key in this._prefabPool) {
-    //   let prefab = this._prefabPool[key];
-    //   if (prefab && prefab.data && prefab.data.getComponent(UnitAction)) {
-    //     arr.push(prefab);
-    //   }
-    // }
+    for (let key in this._prefabPool) {
+      let prefab = this._prefabPool[key];
+      if (prefab && prefab.data && prefab.data.getComponent(UnitElement)) {
+        arr.push(prefab);
+      }
+    }
 
     return arr;
   }
